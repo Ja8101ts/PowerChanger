@@ -1,0 +1,16 @@
+# ビルドで自動生成されるフォルダー（GitHub には載せない）
+bin/
+obj/
+
+# Visual Studio / Rider / VS Code の個人設定
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+
+# アプリが実行時に作るエラーログ
+error_log.txt
+
+# 配布用に作った zip
+*.zip

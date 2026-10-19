@@ -1,0 +1,51 @@
+<Window x:Class="PowerChangerGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Power Changer"
+        Width="420" MinWidth="340" MinHeight="180"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        Background="#202020"
+        Icon="powerchanger_icon.ico"
+        Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <!-- 高パフォーマンス・究極のパフォーマンスのボタンの色（ここを変えれば色を調整できます） -->
+        <SolidColorBrush x:Key="PerformanceButtonBackground" Color="#F6CACA"/>
+        <SolidColorBrush x:Key="PerformanceButtonForeground" Color="#5C1414"/>
+    </Window.Resources>
+
+    <!--
+        SizeToContent="Height" … 中身（ボタンの数）に合わせてウィンドウの高さが自動で伸び縮みする
+        ScrollViewer            … それでも画面に収まらないときはスクロールできるようにする
+    -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="20" HorizontalAlignment="Center">
+
+            <!-- TextWrapping="Wrap" で長い文章は折り返す（横に見切れない） -->
+            <TextBlock x:Name="StatusText" Text="設定取得中..." FontSize="18"
+                       TextWrapping="Wrap" TextAlignment="Center"
+                       HorizontalAlignment="Center" Margin="0,0,0,16"/>
+
+            <!-- PC に入っている電源プラン（起動時に powercfg /list から作る） -->
+            <TextBlock Text="電源プラン" Width="260" Opacity="0.7"/>
+            <StackPanel x:Name="DynamicButtonBox"/>
+
+            <!-- 一覧に出てこない Windows 標準プラン（全部一覧にあれば非表示） -->
+            <StackPanel x:Name="StandardPlanSection" Visibility="Collapsed" Margin="0,12,0,0">
+                <TextBlock Text="Windows 標準プラン" Width="260" Opacity="0.7"/>
+                <StackPanel x:Name="StandardPlanButtonBox"/>
+                <TextBlock Width="260" FontSize="12" Opacity="0.6" TextWrapping="Wrap" Margin="0,2,0,0"
+                           Text="一覧には表示されていない Windows 標準のプランです。押すと直接切り替えます。"/>
+            </StackPanel>
+
+            <Button x:Name="ReloadButton" Content="一覧を再読み込み" Click="ReloadButton_Click"
+                    Width="260" Height="36" Margin="10,16,10,0"/>
+
+            <!-- ノートパソコン判定の結果 -->
+            <TextBlock x:Name="DeviceText" Width="260" FontSize="12" Opacity="0.6"
+                       TextWrapping="Wrap" Margin="0,12,0,0"/>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
