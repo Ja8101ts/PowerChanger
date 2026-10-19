@@ -39,7 +39,7 @@ zip を展開して `PowerChangerGUI.exe` を実行します。
 [.NET 10 SDK](https://dotnet.microsoft.com/download) が必要です。
 
 ```
-git clone https://github.com/<ユーザー名>/PowerChanger.git
+git clone https://github.com/<Ja8101ts>/PowerChanger.git
 cd PowerChanger
 dotnet run
 ```
